@@ -1,7 +1,7 @@
 import './config'; // Load environment variables first
 import express from 'express';
-import countryRoutes from './routes/countryRoutes';
-import { getStatus } from './controllers/CountryController';
+// import countryRoutes from './routes/countryRoutes';
+// import { getStatus } from './controllers/CountryController';
 
 const app = express();
 const port = parseInt(process.env.PORT || '3000', 10);
@@ -16,10 +16,10 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 // Mount the country routes
-app.use('/countries', countryRoutes);
+// app.use('/countries', countryRoutes);
 
 // Status route at root level (as required by task)
-app.get('/status', getStatus);
+// app.get('/status', getStatus);
 
 // Basic root route
 app.get('/', (req, res) => {
