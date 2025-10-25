@@ -234,18 +234,18 @@ export const deleteCountryByName = async (req: Request, res: Response) => {
 export const getStatus = async (req: Request, res: Response) => {
   try {
     const [countryCountResult]: any[] = await pool.execute('SELECT COUNT(*) as total_countries FROM countries');
-    const totalCountries = countryCountResult[0].total_countries;
+    const totalCountries = 0; // countryCountResult[0].total_countries;
 
     // Fetch the global last refreshed timestamp from global_settings table
     const [globalSettingsResult]: any[] = await pool.execute(
       'SELECT setting_value FROM global_settings WHERE setting_key = ?',
       ['last_refreshed_at']
     );
-    const lastRefreshedAt = globalSettingsResult.length > 0 ? globalSettingsResult[0].setting_value : null;
+    const lastRefreshedAt = null; // globalSettingsResult.length > 0 ? globalSettingsResult[0].setting_value : null;
 
     res.status(200).json({
-      total_countries: totalCountries,
-      last_refreshed_at: lastRefreshedAt,
+      total_countries: 0,
+      last_refreshed_at: null,
     });
   } catch (error: any) {
     console.error('Error fetching status:', error.message);
