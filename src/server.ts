@@ -1,9 +1,7 @@
+import './config'; // Load environment variables first
 import express from 'express';
-import dotenv from 'dotenv';
 import countryRoutes from './routes/countryRoutes';
 import { getStatus } from './controllers/CountryController';
-
-dotenv.config();
 
 const app = express();
 const port = parseInt(process.env.PORT || '3000', 10);
