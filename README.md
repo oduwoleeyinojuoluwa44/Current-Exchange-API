@@ -120,6 +120,59 @@ You can use tools like Postman or `curl` to test the API endpoints.
 -   Dotenv
 -   Sharp (for image generation)
 
+## Deployment
+
+### Railway (Recommended)
+
+1. **Install Railway CLI:**
+   ```bash
+   npm install -g @railway/cli
+   ```
+
+2. **Login and Initialize:**
+   ```bash
+   railway login
+   railway init
+   ```
+
+3. **Add MySQL Database:**
+   ```bash
+   railway add mysql
+   ```
+
+4. **Set Environment Variables:**
+   In Railway dashboard, go to Variables tab and add:
+   ```env
+   DB_HOST = [your MYSQLHOST value]
+   DB_PORT = [your MYSQLPORT value]
+   DB_USER = [your MYSQLUSER value]
+   DB_PASSWORD = [your MYSQLPASSWORD value]
+   DB_NAME = [your MYSQLDATABASE value]
+   PORT = 3000
+   ```
+
+5. **Run Database Migration:**
+   ```bash
+   npm run db:migrate
+   ```
+   Or manually in Railway dashboard:
+   - Go to your MySQL service → "Data" tab → "Import/Export" → "Import SQL"
+   - Copy and paste the contents of `migrations/001_initial_schema.sql`
+   - Click "Import"
+
+6. **Deploy:**
+   ```bash
+   railway up
+   ```
+
+Your API will be live at: `https://your-project-name.railway.app`
+
 ## Submission
 
 Follow the submission instructions provided in the task description. Ensure your API is hosted and the GitHub repository link is included with this README.
+
+**For Submission:**
+- **API Base URL:** `https://your-project-name.railway.app`
+- **GitHub Repository:** Your repository URL
+- **Full Name:** Your name
+- **Email:** Your email

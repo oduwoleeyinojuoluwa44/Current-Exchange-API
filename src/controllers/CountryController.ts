@@ -22,13 +22,27 @@ export const refreshCountries = async (req: Request, res: Response) => {
   const lastRefreshTimestamp = new Date();
 
   try {
-    // 1. Fetch countries data
-    const countriesResponse = await axios.get(REST_COUNTRIES_API);
+    // 1. Fetch countries data with timeout
+    console.log('Fetching countries data...');
+    const countriesResponse = await axios.get(REST_COUNTRIES_API, {
+      timeout: 30000, // 30 second timeout
+      headers: {
+        'User-Agent': 'Country-Currency-API/1.0'
+      }
+    });
     countriesData = countriesResponse.data;
+    console.log(`Fetched ${countriesData.length} countries`);
 
-    // 2. Fetch exchange rates
-    const ratesResponse = await axios.get(EXCHANGE_RATES_API);
+    // 2. Fetch exchange rates with timeout
+    console.log('Fetching exchange rates...');
+    const ratesResponse = await axios.get(EXCHANGE_RATES_API, {
+      timeout: 30000, // 30 second timeout
+      headers: {
+        'User-Agent': 'Country-Currency-API/1.0'
+      }
+    });
     exchangeRates = ratesResponse.data.rates;
+    console.log(`Fetched ${Object.keys(exchangeRates).length} exchange rates`);
 
   } catch (error: any) {
     console.error('Error fetching external data:', error.message);
