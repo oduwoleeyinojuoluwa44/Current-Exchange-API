@@ -6,7 +6,7 @@ import { getStatus } from './controllers/CountryController';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = parseInt(process.env.PORT || '3000', 10);
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -28,6 +28,6 @@ app.get('/', (req, res) => {
   res.send('Country Currency & Exchange API is running!');
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server running at http://0.0.0.0:${port}`);
 });
